@@ -1,0 +1,13 @@
+#!/bin/sh
+
+getrnd()
+{
+    echo $((`hexdump -n 2 -e '"%1u"' /dev/urandom` / $1));
+}
+
+sed \
+    -e "s/01\s*\*\s*\*\s*\*\s*\*\s*root/`getrnd 1110` * * * * root/g" \
+    -e "s/02\s*4\s*\*\s*\*\s*\*\s*root/`getrnd 1110` `getrnd 2848` * * * root/g" \
+    -e "s/22\s*4\s*\*\s*\*\s*0\s*root/`getrnd 1110` `getrnd 2848` * * `getrnd 9362` root/g" \
+    -e "s/42\s*4\s*1\s*\*\s*\*\s*root/`getrnd 1110` `getrnd 2848` $((`getrnd 2427` + 1)) * * root/g" \
+    -i /etc/crontab
