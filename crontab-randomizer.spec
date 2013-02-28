@@ -1,6 +1,6 @@
 Name:		crontab-randomizer
 Version:	1
-Release:	1.selectel
+Release:	2.selectel
 BuildArch:  noarch
 Summary:    Randomizes default crontab times
 Group:		System Environment/Base
@@ -21,14 +21,16 @@ rm -rf %{buildroot}
 %pre
 %post
 echo "Running crontab randomization"
-/usr/local/sbin/crontab-randomizer
+/usr/bin/crontab-randomizer
 service crond reload
 %preun
 %postun
 %files
 %defattr(-,root,root,-)
 %doc
-/usr/local/sbin/crontab-randomizer
+/usr/bin/crontab-randomizer
 %changelog
+* Thu Feb 28 2013 Selectel
+ - Moved randomization script to /usr/bin
 * Thu Jan 20 2013 Selectel
  - Initial package

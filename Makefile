@@ -1,6 +1,6 @@
 ARCH = noarch
 VERSION = 1
-RELEASE = 1.selectel
+RELEASE = 2.selectel
 
 RPMDIR = $(shell rpm --eval '%{_rpmdir}')
 RPMBUILD = rpmbuild -v --clean \
